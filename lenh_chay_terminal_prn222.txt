@@ -1,0 +1,36 @@
+lệnh chạy database code frist
+
+	dotnet tool install --global dotnet-ef
+
+	dotnet ef migrations add InitialCreate
+
+	dotnet ef database update
+
+---------------------------------------------------------------------------
+
+Add nuget packet
+
+	dotnet add package Microsoft.EntityFrameworkCore.Design
+
+	dotnet add package Microsoft.EntityFrameworkCore.SqlServer 
+
+	dotnet add package Microsoft.EntityFrameworkCore
+
+	dotnet add package Microsoft.EntityFrameworkCore.Tools
+
+	dotnet add package Microsoft.Extensions.Configuration
+
+	dotnet add package Microsoft.Extensions.Configuration.Json 
+
+	dotnet add package Newtonsoft.Json
+
+----------------------------------------------------------------------------
+
+Lệnh chạy database frist
+
+dotnet ef dbcontext scaffold "Server=localhost; Database=CinemaBookingDB;User ID=sa;Password=123;Trusted_Connection=True;TrustServerCertificate=True;" Microsoft.EntityFrameworkCore.SqlServer -o Model
+
+	Đổi tên server,Database,ID,Password
+
+
+
