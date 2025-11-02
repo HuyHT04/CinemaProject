@@ -1,0 +1,7 @@
+# Ignore build results
+bin/
+obj/
+.vs/
+*.user
+*.db
+appsettings.Development.json
