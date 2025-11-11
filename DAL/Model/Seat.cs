@@ -9,7 +9,7 @@ public partial class Seat
 
     public string? Code { get; set; }
 
-    public bool? IsAvailable { get; set; }
+    public bool IsAvailable { get; set; }
 
     public int? RoomId { get; set; }
 

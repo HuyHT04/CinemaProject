@@ -1,0 +1,112 @@
+﻿@page
+@model CinemaBookingRazor.Pages.Account.RegisterModel
+@{
+    ViewData["Title"] = "Register";
+}
+
+<div class="d-flex justify-content-center mt-4">
+    <div class="card auth-card auth-card--center" style="max-width:520px; width:100%;">
+        <div class="card-body">
+            <h4 class="card-title text-light mb-3">Register</h4>
+
+            <div asp-validation-summary="ModelOnly" class="text-danger mb-2"></div>
+
+            <form method="post" novalidate>
+                <div class="mb-3">
+                    <label asp-for="Input.FullName" class="form-label text-muted">Full name</label>
+                    <input asp-for="Input.FullName" class="form-control auth-input" autocomplete="name" />
+                    <span asp-validation-for="Input.FullName" class="text-danger small"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Input.Email" class="form-label text-muted">Email</label>
+                    <input asp-for="Input.Email" class="form-control auth-input" autocomplete="email" />
+                    <span asp-validation-for="Input.Email" class="text-danger small"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Input.Password" class="form-label text-muted">Password</label>
+                    <input asp-for="Input.Password" type="password" class="form-control auth-input" autocomplete="new-password" />
+                    <span asp-validation-for="Input.Password" class="text-danger small"></span>
+                </div>
+
+                <div class="d-grid gap-2">
+                    <button type="submit" class="btn btn-cinema">Register</button>
+                    <a class="btn btn-outline-cinema" asp-page="/Account/Login">Already have an account?</a>
+                </div>
+            </form>
+
+            <partial name="_ValidationScriptsPartial" />
+        </div>
+    </div>
+</div>
+
+<style>
+    /* Reuse dark cinema styles (inputs and buttons) */
+    :root {
+        --cinema-yellow: #ffd54f;
+        --muted: #9aa0a4;
+    }
+
+    .auth-card {
+        background: linear-gradient(180deg,#131415,#0f1112);
+        color: #e6e9eb;
+        border: 1px solid rgba(255,255,255,0.04);
+        box-shadow: 0 8px 20px rgba(0,0,0,0.55);
+        border-radius: 8px;
+    }
+
+        .auth-card .card-body {
+            padding: 20px;
+        }
+
+    .auth-input {
+        background: #0d0e10;
+        color: #e6e9eb;
+        border: 1px solid rgba(255,255,255,0.06);
+    }
+
+        .auth-input::placeholder {
+            color: rgba(230,233,235,0.5);
+        }
+
+    .btn-cinema {
+        background: var(--cinema-yellow);
+        color: #111;
+        border: 1px solid #e6c200;
+    }
+
+        .btn-cinema:hover {
+            background: #e6c100;
+            color: #111;
+        }
+
+    .btn-outline-cinema {
+        background: transparent;
+        color: var(--cinema-yellow);
+        border: 1px solid var(--cinema-yellow);
+    }
+
+        .btn-outline-cinema:hover {
+            background: var(--cinema-yellow);
+            color: #111;
+        }
+
+    .auth-card--center {
+        margin: 12px;
+    }
+
+    .text-muted {
+        color: var(--muted) !important;
+    }
+
+    /* Autofill fix */
+    input:-webkit-autofill,
+    textarea:-webkit-autofill,
+    select:-webkit-autofill {
+        -webkit-text-fill-color: #e6e9eb !important;
+        -webkit-box-shadow: 0 0 0px 1000px #0d0e10 inset !important;
+        box-shadow: 0 0 0px 1000px #0d0e10 inset !important;
+        transition: background-color 5000s ease-in-out 0s;
+    }
+</style>

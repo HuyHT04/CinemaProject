@@ -1,0 +1,96 @@
+﻿@page "{id:int}"
+@model CinemaBookingRazor.Pages.AdminPage.MovieActions.DeleteModel
+@{
+    Layout = null;
+}
+
+<h2>🗑️ Delete Movie</h2>
+
+@if (!string.IsNullOrEmpty(Model.ErrorMessage))
+{
+    <p class="error-msg">@Model.ErrorMessage</p>
+}
+
+@if (Model.Movie != null)
+{
+    <div class="movie-info">
+        <p>Bạn có chắc muốn xóa phim sau không?</p>
+        <p><strong>Title:</strong> @Model.Movie.Title</p>
+        <p><strong>Genre:</strong> @Model.Movie.Genre</p>
+        <p><strong>Duration:</strong> @Model.Movie.Duration phút</p>
+        <p><strong>Price:</strong> @Model.Movie.Price?.ToString("C")</p>
+    </div>
+
+    <form method="post">
+        <input type="hidden" asp-for="Movie.Id" />
+        <button type="submit" class="btn-delete">Delete</button>
+        <button type="button" class="btn-cancel" onclick="location.href='/AdminPage/ManageMovie/ManageMovie'">Cancel</button>
+    </form>
+}
+
+<style>
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #f4f6f8;
+        padding: 30px;
+    }
+
+    h2 {
+        color: #2c3e50;
+        text-align: center;
+        margin-bottom: 25px;
+    }
+
+    .error-msg {
+        color: #e74c3c;
+        font-weight: bold;
+        text-align: center;
+        margin-bottom: 15px;
+    }
+
+    .movie-info {
+        max-width: 500px;
+        margin: 0 auto 20px auto;
+        background-color: #ffffff;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        text-align: center;
+        line-height: 1.6;
+    }
+
+    .btn-delete {
+        width: 100%;
+        padding: 12px;
+        background-color: #e74c3c;
+        border: none;
+        color: white;
+        font-size: 16px;
+        font-weight: bold;
+        border-radius: 8px;
+        cursor: pointer;
+        margin-bottom: 10px;
+        transition: 0.3s;
+    }
+
+        .btn-delete:hover {
+            background-color: #c0392b;
+        }
+
+    .btn-cancel {
+        width: 100%;
+        padding: 12px;
+        background-color: #95a5a6;
+        border: none;
+        color: white;
+        font-size: 16px;
+        font-weight: bold;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+        .btn-cancel:hover {
+            background-color: #7f8c8d;
+        }
+</style>

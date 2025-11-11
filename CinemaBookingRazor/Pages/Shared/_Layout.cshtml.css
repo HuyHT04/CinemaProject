@@ -1,48 +1,91 @@
-﻿/* Please see documentation at https://learn.microsoft.com/aspnet/core/client-side/bundling-and-minification
-for details on configuring this project to bundle and minify static web assets. */
+﻿/* Cinema theme: black header + yellow accent, consistent primary buttons */
 
+:root {
+    --cinema-yellow: #ffd700;
+    --cinema-black: #0e0f12;
+    --cinema-muted: #6c6c6c;
+}
+
+/* Brand and navbar */
 a.navbar-brand {
-  white-space: normal;
-  text-align: center;
-  word-break: break-all;
+    color: var(--cinema-yellow);
+    font-weight: 700;
+    white-space: nowrap;
 }
 
-a {
-  color: #0077cc;
+.navbar-dark {
+    background-color: var(--cinema-black) !important;
 }
 
+    .navbar-dark .navbar-nav .nav-link {
+        color: rgba(255,255,255,0.9);
+    }
+
+        .navbar-dark .navbar-nav .nav-link:hover,
+        a.navbar-brand:hover {
+            color: #ffffff;
+        }
+
+/* Primary buttons use yellow accent (cinema look) */
 .btn-primary {
-  color: #fff;
-  background-color: #1b6ec2;
-  border-color: #1861ac;
+    color: #111;
+    background-color: var(--cinema-yellow);
+    border-color: #e6c200;
 }
 
-.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
-  color: #fff;
-  background-color: #1b6ec2;
-  border-color: #1861ac;
+    .btn-primary:hover,
+    .btn-primary:focus {
+        color: #111;
+        background-color: #e6c100;
+        border-color: #cfa800;
+    }
+
+/* Outline primary variant (if used) */
+.btn-outline-primary {
+    color: var(--cinema-yellow);
+    border-color: var(--cinema-yellow);
 }
 
-.border-top {
-  border-top: 1px solid #e5e5e5;
-}
-.border-bottom {
-  border-bottom: 1px solid #e5e5e5;
+    .btn-outline-primary:hover {
+        color: #111;
+        background-color: var(--cinema-yellow);
+        border-color: #e6c200;
+    }
+
+/* Cards: keep white body but add subtle shadow and rounded corners */
+.card {
+    border-radius: 6px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.06);
 }
 
-.box-shadow {
-  box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+/* Hero */
+.hero {
+    background: linear-gradient(90deg,#0f0f10 0%, #ffffff00 60%);
+    padding-top: 32px;
+    padding-bottom: 32px;
 }
 
-button.accept-policy {
-  font-size: 1rem;
-  line-height: inherit;
-}
+    .hero .display-5 {
+        color: #111;
+    }
 
+/* Footer */
 .footer {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  white-space: nowrap;
-  line-height: 60px;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    white-space: nowrap;
+    line-height: 60px;
+    color: var(--cinema-muted);
+}
+
+/* Small responsive tweaks */
+@media (max-width: 768px) {
+    .hero-image {
+        max-width: 140px;
+    }
+
+    .btn-primary {
+        font-size: 0.95rem;
+    }
 }

@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -6,40 +6,13 @@
     <title>@ViewData["Title"] - CinemaBookingRazor</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-
-    <style>
-        :root{
-          --cinema-black: #0b0c0d;
-          --cinema-yellow: #ffd54f;
-          --muted: #9aa0a4;
-        }
-
-        body {
-          background: var(--cinema-black);
-          color: #e6e9eb;
-        }
-
-        /* Navbar */
-        .navbar {
-          background: linear-gradient(180deg, #0f1112, #0b0c0d) !important;
-          border-bottom: 1px solid rgba(255,255,255,0.04);
-        }
-        .navbar-brand { color: var(--cinema-yellow) !important; font-weight:700; }
-        .navbar .nav-link { color: #e6e9eb !important; }
-        .navbar .nav-link:hover { color: #fff !important; }
-
-        /* Container content stays transparent */
-        .container { background: transparent; }
-
-        /* Footer */
-        .footer { color: var(--muted); padding-top: 16px; padding-bottom: 24px; }
-    </style>
+    <link rel="stylesheet" href="~/CinemaBookingRazor.styles.css" asp-append-version="true" />
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-dark">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark border-bottom box-shadow mb-3">
             <div class="container">
-                <a class="navbar-brand" asp-area="" asp-page="/Index">GO CGV Can Tho</a>
+                <a class="navbar-brand" asp-area="" asp-page="/Index">CinemaBookingRazor</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -57,7 +30,6 @@
             </div>
         </nav>
     </header>
-
     <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()

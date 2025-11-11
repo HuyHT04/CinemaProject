@@ -4,7 +4,8 @@ using DAL.Data;
 using DAL.Interfaces;
 using DAL.Repositories;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
+using Microsoft.AspNetCore.Authentication.Cookies;
+
 namespace CinemaBookingRazor
 {
     public class Program
@@ -12,7 +13,18 @@ namespace CinemaBookingRazor
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
+
+            // Keep existing AddDbContext (OnConfiguring in DbContext will provide connection)
             builder.Services.AddDbContext<CinemaBookingRazorContext>();
+
+            // Cookie authentication (simple, works with claims we set on login)
+            builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+                .AddCookie(options =>
+                {
+                    options.LoginPath = "/Account/Login";
+                    options.ExpireTimeSpan = TimeSpan.FromHours(8);
+                });
+
             // Add services to the container.
             builder.Services.AddRazorPages();
             builder.Services.AddScoped<IBookingRepository, BookingRepository>();
@@ -33,11 +45,9 @@ namespace CinemaBookingRazor
 
             var app = builder.Build();
 
-            // Configure the HTTP request pipeline.
             if (!app.Environment.IsDevelopment())
             {
                 app.UseExceptionHandler("/Error");
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
 
@@ -46,6 +56,8 @@ namespace CinemaBookingRazor
 
             app.UseRouting();
 
+            // Authentication must be before Authorization
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.MapRazorPages();

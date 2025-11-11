@@ -7,5 +7,11 @@ using System.Threading.Tasks;
 
 namespace DAL.Interfaces
 {
-    public interface IUserRepository : IGenericRepository<AspNetUser> { }
+    public interface IUserRepository : IGenericRepository<AspNetUser>
+    {
+        Task<AspNetUser?> GetByIdAsync(string id);
+        Task<AspNetUser?> GetByIdStringAsync(string id);
+        Task<bool> DeleteAsync(string id);
+        Task<AspNetUser?> GetByEmailAsync(string email);
+    }
 }

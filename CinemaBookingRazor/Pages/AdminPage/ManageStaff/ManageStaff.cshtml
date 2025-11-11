@@ -1,0 +1,147 @@
+﻿@page
+@model CinemaBookingRazor.Pages.AdminPage.ManageStaff.ManageStaffModel
+@{
+    Layout = null;
+}
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f6f8;
+        padding: 20px;
+    }
+
+    h2 {
+        color: #2c3e50;
+        margin-bottom: 20px;
+    }
+
+    .btn {
+        padding: 8px 15px;
+        border: none;
+        border-radius: 5px;
+        color: white;
+        cursor: pointer;
+        margin-right: 5px;
+        font-weight: bold;
+        transition: 0.3s;
+    }
+
+    .btn-add {
+        background-color: #2ecc71;
+        margin-bottom: 15px;
+    }
+
+        .btn-add:hover {
+            background-color: #27ae60;
+        }
+
+    .btn-edit {
+        background-color: #3498db;
+    }
+
+        .btn-edit:hover {
+            background-color: #2980b9;
+        }
+
+    .btn-delete {
+        background-color: #e74c3c;
+    }
+
+        .btn-delete:hover {
+            background-color: #c0392b;
+        }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        background-color: white;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        border-radius: 5px;
+        overflow: hidden;
+    }
+
+    th, td {
+        padding: 12px 15px;
+        text-align: left;
+    }
+
+    th {
+        background-color: #34495e;
+        color: white;
+        font-weight: bold;
+    }
+
+    tbody tr {
+        border-bottom: 1px solid #ddd;
+        transition: background-color 0.2s;
+    }
+
+        tbody tr:hover {
+            background-color: #f1f1f1;
+        }
+
+    td:last-child {
+        text-align: center;
+    }
+
+    .error-message {
+        color: red;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+</style>
+
+<h2>👨‍💼 Manage Staff</h2>
+
+@if (!string.IsNullOrEmpty(Model.ErrorMessage))
+{
+    <p class="error-message">@Model.ErrorMessage</p>
+}
+
+<!-- Nút Add -->
+<button class="btn btn-add" onclick="location.href='/AdminPage/StaffActions/Add'">
+    + Add New Staff
+</button>
+
+<table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Full Name</th>
+            <th>Email</th>
+            <th>Role</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.StaffList != null && Model.StaffList.Count > 0)
+        {
+            foreach (var staff in Model.StaffList)
+            {
+                <tr>
+                    <td>@staff.Id</td>
+                    <td>@staff.FullName</td>
+                    <td>@staff.Email</td>
+                    <td>@staff.RoleName</td>
+                    <td>
+                        <button class="btn btn-edit"
+                                onclick="location.href='/AdminPage/StaffActions/Edit/@staff.Id'">
+                            Edit
+                        </button>
+                        <button class="btn btn-delete"
+                                onclick="location.href='/AdminPage/StaffActions/Delete/@staff.Id'">
+                            Delete
+                        </button>
+                    </td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="5" style="text-align:center;">No staff found</td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,155 @@
+﻿@page
+@model CinemaBookingRazor.Pages.AdminPage.ManageMovie.ManageMovieModel
+@{
+    Layout = null;
+}
+
+<h2>🎬 Manage Movies</h2>
+
+@if (!string.IsNullOrEmpty(Model.ErrorMessage))
+{
+    <p style="color:red">@Model.ErrorMessage</p>
+}
+
+<!-- Nút Add -->
+<button class="btn btn-add" onclick="location.href='@Url.Page("/AdminPage/MovieActions/Add")'">
+    + Add New Movie
+</button>
+
+
+<table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Title</th>
+            <th>Genre</th>
+            <th>Duration</th>
+            <th>Price</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.MovieList != null && Model.MovieList.Count > 0)
+        {
+            foreach (var movie in Model.MovieList)
+            {
+                <tr>
+                    <td>@movie.Id</td>
+                    <td>@movie.Title</td>
+                    <td>@movie.Genre</td>
+                    <td>@movie.Duration</td>
+                    <td>@movie.Price?.ToString("C")</td>
+                    <td>
+                        <button class="btn btn-view"
+                                onclick="location.href='@Url.Page("/AdminPage/MovieActions/View", new { id = movie.Id })'">
+                            View
+                        </button>
+                        <button class="btn btn-edit" onclick="location.href='/AdminPage/MovieActions/Edit/@movie.Id'">
+                            Edit
+                        </button>
+                        <button class="btn btn-delete" onclick="location.href='/AdminPage/MovieActions/Delete/@movie.Id'">
+                            Delete
+                        </button>
+                    </td>
+
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="6" style="text-align:center;">No movies found</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f6f8;
+        padding: 20px;
+    }
+
+    .btn-view {
+        background-color: #f39c12; /* màu cam ví dụ */
+    }
+
+        .btn-view:hover {
+            background-color: #d35400; /* màu cam đậm khi hover */
+        }
+
+    h2 {
+        color: #2c3e50;
+        margin-bottom: 20px;
+    }
+
+    .btn {
+        padding: 8px 15px;
+        border: none;
+        border-radius: 5px;
+        color: white;
+        cursor: pointer;
+        margin-right: 5px;
+        font-weight: bold;
+        transition: 0.3s;
+    }
+
+    .btn-add {
+        background-color: #2ecc71;
+        margin-bottom: 15px;
+    }
+
+        .btn-add:hover {
+            background-color: #27ae60;
+        }
+
+    .btn-edit {
+        background-color: #3498db;
+    }
+
+        .btn-edit:hover {
+            background-color: #2980b9;
+        }
+
+    .btn-delete {
+        background-color: #e74c3c;
+    }
+
+        .btn-delete:hover {
+            background-color: #c0392b;
+        }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        background-color: white;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        border-radius: 5px;
+        overflow: hidden;
+    }
+
+    th, td {
+        padding: 12px 15px;
+        text-align: left;
+    }
+
+    th {
+        background-color: #34495e;
+        color: white;
+        font-weight: bold;
+    }
+
+    tbody tr {
+        border-bottom: 1px solid #ddd;
+        transition: background-color 0.2s;
+    }
+
+        tbody tr:hover {
+            background-color: #f1f1f1;
+        }
+
+    td:last-child {
+        text-align: center;
+    }
+</style>

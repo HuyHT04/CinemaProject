@@ -1,0 +1,82 @@
+﻿@page
+@model CinemaBookingRazor.Pages.AdminPage.AdminPageModel
+@{
+    ViewData["Title"] = "Admin Dashboard";
+    Layout = null; 
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewData["Title"]</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            display: flex;
+            height: 100vh;
+            background-color: #f5f6fa;
+        }
+
+        .sidebar {
+            width: 220px;
+            background-color: #1e1e2f;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            padding-top: 20px;
+        }
+
+        .sidebar h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #ffcc00;
+        }
+
+        .sidebar a {
+            color: white;
+            text-decoration: none;
+            padding: 12px 20px;
+            display: block;
+            transition: 0.3s;
+        }
+
+        .sidebar a:hover {
+            background-color: #33334d;
+        }
+
+        .content {
+            flex: 1;
+            padding: 20px;
+        }
+
+        .header {
+            background-color: #fff;
+            padding: 15px 20px;
+            border-bottom: 1px solid #ddd;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        iframe {
+            width: 100%;
+            height: calc(100vh - 60px);
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <h2>Admin Dashboard</h2>
+        <a href="/AdminPage/ManageStaff/ManageStaff" target="adminFrame">👨‍💼 Manage Account</a>
+        <a href="/AdminPage/ManageMovie/ManageMovie" target="adminFrame">🎬 Manage Movie</a>
+        <a href="/">🏠 Home</a>
+    </div>
+
+    <div class="content">
+        <div class="header">Welcome, Admin!</div>
+        <iframe name="adminFrame" src="/AdminPage"></iframe>
+    </div>
+</body>
+</html>

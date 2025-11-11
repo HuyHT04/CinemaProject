@@ -7,5 +7,8 @@ using System.Threading.Tasks;
 
 namespace BLL.Interfaces
 {
-    public interface IMovieService : IGenericService<Movie> { }
+    public interface IMovieService : IGenericService<Movie> {
+        Task<Movie?> GetByNameAsync(string title);
+        Task<bool> ExistsByTitleAsync(string title, int excludeId = 0);
+    }
 }

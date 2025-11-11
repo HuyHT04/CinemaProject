@@ -1,0 +1,103 @@
+﻿@page "{id:int}"
+@model CinemaBookingRazor.Pages.AdminPage.ManageMovie.ViewModel
+@{
+    Layout = null;
+}
+
+<h2>🎬 Movie Details</h2>
+
+@if (!string.IsNullOrEmpty(Model.ErrorMessage))
+{
+    <p class="error-msg">@Model.ErrorMessage</p>
+}
+
+@if (Model.Movie != null)
+{
+    <div class="movie-details-card">
+        <div class="poster">
+            <img src="@Model.Movie.PosterUrl" alt="Poster" />
+        </div>
+        <div class="info">
+            <p><strong>Title:</strong> @Model.Movie.Title</p>
+            <p><strong>Genre:</strong> @Model.Movie.Genre</p>
+            <p><strong>Duration:</strong> @Model.Movie.Duration minutes</p>
+            <p><strong>Price:</strong> @Model.Movie.Price?.ToString("C")</p>
+            <p><strong>Description:</strong> @Model.Movie.Description</p>
+        </div>
+    </div>
+}
+
+<button class="btn-back" onclick="location.href='/AdminPage/ManageMovie/ManageMovie'">← Back</button>
+
+<style>
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #f4f6f8;
+        padding: 30px;
+    }
+
+    h2 {
+        color: #2c3e50;
+        text-align: center;
+        margin-bottom: 25px;
+    }
+
+    .error-msg {
+        color: #e74c3c;
+        font-weight: bold;
+        text-align: center;
+        margin-bottom: 15px;
+    }
+
+    .movie-details-card {
+        max-width: 800px;
+        margin: 0 auto 20px auto;
+        display: flex;
+        gap: 25px;
+        background-color: #ffffff;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        align-items: flex-start;
+    }
+
+    .poster img {
+        width: 250px;
+        height: auto;
+        border-radius: 8px;
+        object-fit: cover;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    .info {
+        flex: 1;
+    }
+
+        .info p {
+            margin: 10px 0;
+            font-size: 16px;
+            color: #34495e;
+        }
+
+        .info strong {
+            color: #2c3e50;
+        }
+
+    .btn-back {
+        display: block;
+        margin: 0 auto;
+        padding: 10px 20px;
+        background-color: #3498db;
+        color: white;
+        border: none;
+        border-radius: 6px;
+        font-size: 15px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+        .btn-back:hover {
+            background-color: #2980b9;
+        }
+</style>

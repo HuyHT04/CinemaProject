@@ -1,0 +1,96 @@
+﻿@page
+@model CinemaBookingRazor.Pages.Account.LoginModel
+@{
+    ViewData["Title"] = "Login";
+}
+
+<div class="d-flex justify-content-center mt-4">
+    <div class="card auth-card auth-card--center" style="max-width:420px; width:100%;">
+        <div class="card-body">
+            <h4 class="card-title text-light mb-3">Sign in</h4>
+            <form method="post" novalidate>
+                <div asp-validation-summary="All" class="text-danger mb-2"></div>
+
+                <div class="mb-3">
+                    <label asp-for="Input.Email" class="form-label text-muted">Email</label>
+                    <input asp-for="Input.Email" class="form-control auth-input" />
+                    <span asp-validation-for="Input.Email" class="text-danger small"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Input.Password" class="form-label text-muted">Password</label>
+                    <input asp-for="Input.Password" type="password" class="form-control auth-input" />
+                    <span asp-validation-for="Input.Password" class="text-danger small"></span>
+                </div>
+
+                <div class="mb-3 form-check">
+                    <input asp-for="Input.RememberMe" class="form-check-input" id="rememberMe" />
+                    <label class="form-check-label text-muted" for="rememberMe">Remember me</label>
+                </div>
+
+                <div class="d-grid gap-2">
+                    <button type="submit" class="btn btn-cinema">Login</button>
+                    <a class="btn btn-outline-cinema" asp-page="/Account/Register">Register</a>
+                </div>
+            </form>
+
+            <partial name="_ValidationScriptsPartial" />
+        </div>
+    </div>
+</div>
+
+<style>
+    .auth-card {
+        background: linear-gradient(180deg,#131415,#0f1112);
+        color: #e6e9eb;
+        border: 1px solid rgba(255,255,255,0.04);
+        box-shadow: 0 8px 20px rgba(0,0,0,0.55);
+        border-radius: 8px;
+    }
+
+        .auth-card .card-body {
+            padding: 20px;
+        }
+
+    .auth-input {
+        background: #0d0e10;
+        color: #e6e9eb;
+        border: 1px solid rgba(255,255,255,0.06);
+    }
+
+        .auth-input::placeholder {
+            color: rgba(230,233,235,0.5);
+        }
+
+    :root {
+        --cinema-yellow: #ffd54f;
+    }
+
+    /* cinema buttons */
+    .btn-cinema {
+        background: var(--cinema-yellow);
+        color: #111;
+        border: 1px solid #e6c200;
+    }
+
+        .btn-cinema:hover {
+            background: #e6c100;
+            color: #111;
+        }
+
+    .btn-outline-cinema {
+        background: transparent;
+        color: var(--cinema-yellow);
+        border: 1px solid var(--cinema-yellow);
+    }
+
+        .btn-outline-cinema:hover {
+            background: var(--cinema-yellow);
+            color: #111;
+        }
+
+    /* small layout tweak when centered */
+    .auth-card--center {
+        margin: 12px;
+    }
+</style>

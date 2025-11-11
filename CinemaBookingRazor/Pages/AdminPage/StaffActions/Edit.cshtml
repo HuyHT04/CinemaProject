@@ -1,0 +1,125 @@
+﻿@page "{id}"
+@model CinemaBookingRazor.Pages.AdminPage.StaffActions.EditModel
+@{
+    Layout = null;
+}
+
+<h2>✏️ Edit Staff</h2>
+
+@if (!string.IsNullOrEmpty(Model.ErrorMessage))
+{
+    <p class="error-msg">@Model.ErrorMessage</p>
+}
+
+<form method="post" class="staff-form">
+    <input type="hidden" asp-for="Staff.Id" />
+
+    <div class="form-group">
+        <label>Full Name:</label>
+        <input type="text" asp-for="Staff.FullName" required />
+        <span asp-validation-for="Staff.FullName" class="validation-msg"></span>
+    </div>
+
+    <div class="form-group">
+        <label>Email:</label>
+        <input type="email" asp-for="Staff.Email" required />
+        <span asp-validation-for="Staff.Email" class="validation-msg"></span>
+    </div>
+
+    <div class="form-group">
+        <label>Role:</label>
+        <select asp-for="Staff.RoleName" required>
+            <option value="Staff">Staff</option>
+            <option value="Admin">Admin</option>
+            <option value="Customer">Customer</option>
+        </select>
+        <span asp-validation-for="Staff.RoleName" class="validation-msg"></span>
+    </div>
+
+    <button type="submit" class="btn-submit">Save Changes</button>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
+
+<style>
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #f4f6f8;
+        padding: 30px;
+    }
+
+    h2 {
+        color: #2c3e50;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .error-msg {
+        color: #e74c3c;
+        font-weight: bold;
+        text-align: center;
+        margin-bottom: 15px;
+    }
+
+    .staff-form {
+        max-width: 500px;
+        margin: 0 auto;
+        background-color: #ffffff;
+        padding: 25px;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+        display: flex;
+        flex-direction: column;
+    }
+
+        .form-group label {
+            margin-bottom: 6px;
+            font-weight: bold;
+            color: #34495e;
+        }
+
+        .form-group input,
+        .form-group select {
+            padding: 10px 12px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 14px;
+            transition: 0.3s;
+        }
+
+            .form-group input:focus,
+            .form-group select:focus {
+                outline: none;
+                border-color: #3498db;
+                box-shadow: 0 0 5px rgba(52,152,219,0.3);
+            }
+
+    .validation-msg {
+        color: #e74c3c;
+        font-size: 13px;
+        margin-top: 4px;
+    }
+
+    .btn-submit {
+        width: 100%;
+        padding: 12px;
+        background-color: #3498db;
+        border: none;
+        color: white;
+        font-size: 16px;
+        font-weight: bold;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+        .btn-submit:hover {
+            background-color: #2980b9;
+        }
+</style>

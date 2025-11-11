@@ -11,6 +11,20 @@ namespace BLL.Services
 {
     public class MovieService : GenericService<Movie>, IMovieService
     {
-        public MovieService(IMovieRepository repo) : base(repo) { }
+        private readonly IMovieRepository _movieRepository;
+
+        public MovieService(IMovieRepository repo) : base(repo)
+        {
+            _movieRepository = repo;
+        }
+
+        public async Task<Movie?> GetByNameAsync(string title)
+        {
+            return await _movieRepository.GetByNameAsync(title);
+        }
+        public async Task<bool> ExistsByTitleAsync(string title, int excludeId = 0)
+        {
+            return await _movieRepository.ExistsByTitleAsync(title, excludeId);
+        }
     }
 }

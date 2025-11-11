@@ -17,7 +17,15 @@ namespace DAL.Data
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer("Server=localhost;Database=CinemaBookingDB;uid=sa;pwd=123;encrypt=true;trustServerCertificate=true;MultipleActiveResultSets=true");
+                optionsBuilder.UseSqlServer(
+                    "Server=localhost;Database=CinemaBookingDB;uid=sa;pwd=123;TrustServerCertificate=True;MultipleActiveResultSets=true;Connect Timeout=60;Max Pool Size=100;",
+                    sqlOptions =>
+                    {
+                        // retry transient failures
+                        sqlOptions.EnableRetryOnFailure(maxRetryCount: 3, maxRetryDelay: TimeSpan.FromSeconds(5), errorNumbersToAdd: null);
+                        // command timeout for long-running queries
+                        sqlOptions.CommandTimeout(60);
+                    });
             }
         }
 

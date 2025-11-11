@@ -7,5 +7,10 @@ using System.Threading.Tasks;
 
 namespace DAL.Interfaces
 {
-    public interface IMovieRepository : IGenericRepository<Movie> { }
+    public interface IMovieRepository : IGenericRepository<Movie>
+    {
+        Task<Movie?> GetByNameAsync(string title);
+        Task<bool> ExistsByTitleAsync(string title, int excludeId = 0);
+
+    }
 }
